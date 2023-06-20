@@ -2,13 +2,21 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Vehiculos() {
-  const [modeloVehiculo, setModeloVehiculo] = useState('');
+  const [placa, setPlaca] = useState('');
+  const [kilometraje, setKilometraje] = useState('');
+  const [marca, setMarca] = useState('');
   const [fotoConductor, setFotoConductor] = useState(null);
-  const [dniConductor, setDniConductor] = useState('');
-  const [placaVehiculo, setPlacaVehiculo] = useState('');
 
-  const handleModeloVehiculoChange = (e) => {
-    setModeloVehiculo(e.target.value);
+  const handlePlacaChange = (e) => {
+    setPlaca(e.target.value);
+  };
+
+  const handleKilometrajeChange = (e) => {
+    setKilometraje(e.target.value);
+  };
+
+  const handleMarcaChange = (e) => {
+    setMarca(e.target.value);
   };
 
   const handleFotoConductorChange = (e) => {
@@ -16,28 +24,20 @@ function Vehiculos() {
     setFotoConductor(file);
   };
 
-  const handleDniConductorChange = (e) => {
-    setDniConductor(e.target.value);
-  };
-
-  const handlePlacaVehiculoChange = (e) => {
-    setPlacaVehiculo(e.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Aquí puedes hacer algo con los datos del vehículo, como enviarlos a una API o almacenarlos en el estado global de la aplicación
-    console.log('Modelo del vehículo:', modeloVehiculo);
+    console.log('Placa del vehículo:', placa);
+    console.log('Kilometraje:', kilometraje);
+    console.log('Marca del vehículo:', marca);
     console.log('Foto del conductor:', fotoConductor);
-    console.log('DNI del conductor:', dniConductor);
-    console.log('Placa del vehículo:', placaVehiculo);
 
     // Luego de procesar los datos, puedes restablecer el formulario
-    setModeloVehiculo('');
+    setPlaca('');
+    setKilometraje('');
+    setMarca('');
     setFotoConductor(null);
-    setDniConductor('');
-    setPlacaVehiculo('');
   };
 
   return (
@@ -103,13 +103,33 @@ function Vehiculos() {
                   </p>
                   <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                      <label htmlFor="modeloVehiculo" className="form-label">Modelo del vehículo</label>
+                      <label htmlFor="placa" className="form-label">Placa del vehículo</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="modeloVehiculo"
-                        value={modeloVehiculo}
-                        onChange={handleModeloVehiculoChange}
+                        id="placa"
+                        value={placa}
+                        onChange={handlePlacaChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="kilometraje" className="form-label">Kilometraje</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="kilometraje"
+                        value={kilometraje}
+                        onChange={handleKilometrajeChange}
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="marca" className="form-label">Marca del vehículo</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="marca"
+                        value={marca}
+                        onChange={handleMarcaChange}
                       />
                     </div>
                     <div className="mb-3">
@@ -120,26 +140,6 @@ function Vehiculos() {
                         id="fotoConductor"
                         accept="image/*"
                         onChange={handleFotoConductorChange}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="dniConductor" className="form-label">DNI del conductor</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="dniConductor"
-                        value={dniConductor}
-                        onChange={handleDniConductorChange}
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="placaVehiculo" className="form-label">Placa del vehículo</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="placaVehiculo"
-                        value={placaVehiculo}
-                        onChange={handlePlacaVehiculoChange}
                       />
                     </div>
                     <button type="submit" className="btn btn-primary">Guardar</button>
